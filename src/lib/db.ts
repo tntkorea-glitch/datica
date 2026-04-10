@@ -79,7 +79,49 @@ async function initializeDb(client: Client): Promise<void> {
       keyword_count INTEGER DEFAULT 0,
       ai_credit_count INTEGER DEFAULT 0,
       blog_diagnosis_count INTEGER DEFAULT 0,
+      post_diagnosis_count INTEGER DEFAULT 0,
       UNIQUE(user_id, date)
+    );
+
+    CREATE TABLE IF NOT EXISTS blog_diagnostics (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      blog_url TEXT NOT NULL,
+      overall_score INTEGER,
+      seo_score INTEGER,
+      content_score INTEGER,
+      activity_score INTEGER,
+      recommendations TEXT,
+      analyzed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS post_diagnostics (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      post_url TEXT NOT NULL,
+      keyword TEXT,
+      seo_score INTEGER,
+      readability_score INTEGER,
+      ranking_potential INTEGER,
+      recommendations TEXT,
+      analyzed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS blog_rank_tracks (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      blog_url TEXT NOT NULL,
+      post_url TEXT NOT NULL,
+      keyword TEXT NOT NULL,
+      is_active INTEGER DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS blog_rank_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      track_id TEXT NOT NULL,
+      rank INTEGER,
+      recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `
 
