@@ -129,6 +129,11 @@ async function initializeDb(client: Client): Promise<void> {
     await client.execute(stmt.trim())
   }
 
+  // Migrate: add post_diagnosis_count if missing
+  try {
+    await client.execute('ALTER TABLE usage_limits ADD COLUMN post_diagnosis_count INTEGER DEFAULT 0')
+  } catch { /* column already exists */ }
+
   // Seed default users
   const existing = await client.execute({ sql: 'SELECT id FROM users WHERE email = ?', args: ['admin'] })
   if (existing.rows.length === 0) {
