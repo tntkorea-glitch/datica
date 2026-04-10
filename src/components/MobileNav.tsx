@@ -2,14 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Search, PenTool, Home, Crown, User } from 'lucide-react'
+import { Search, PenTool, Stethoscope, BarChart3, User } from 'lucide-react'
 
 const TABS = [
   { href: '/keyword', label: '키워드', icon: Search },
   { href: '/write', label: 'AI글쓰기', icon: PenTool },
-  { href: '/keyword', label: '홈', icon: Home },
-  { href: '/membership', label: '멤버십', icon: Crown },
-  { href: '/mypage', label: '마이페이지', icon: User },
+  { href: '/diagnose/blog', label: '진단', icon: Stethoscope },
+  { href: '/rank', label: '순위', icon: BarChart3 },
+  { href: '/mypage', label: '마이', icon: User },
 ]
 
 export default function MobileNav() {
