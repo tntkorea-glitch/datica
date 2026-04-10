@@ -17,6 +17,7 @@ export async function checkUsageLimit(userId: string, type: UsageType, plan: Pla
     case 'keyword_count': limit = limits.keywordsPerMin * 60 * 24; break // daily approximation
     case 'ai_credit_count': limit = limits.aiCreditsPerDay; break
     case 'blog_diagnosis_count': limit = limits.blogDiagnosisPerDay; break
+    case 'post_diagnosis_count': limit = limits.postDiagnosisPerDay; break
     default: limit = 999999
   }
 
