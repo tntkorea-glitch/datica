@@ -60,7 +60,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="text-center text-sm text-gray-400 py-8 px-6">
-        <p>&copy; 2025-2026 Ranktica. All rights reserved.</p>
+        <p>&copy; 2025-2026 Datica. All rights reserved.</p>
       </footer>
     </div>
   )
