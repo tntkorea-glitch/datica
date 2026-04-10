@@ -35,12 +35,12 @@ export async function incrementUsage(userId: string, type: UsageType): Promise<v
   )
 }
 
-export async function getUsageStats(userId: string): Promise<{ keyword_count: number; ai_credit_count: number; blog_diagnosis_count: number }> {
+export async function getUsageStats(userId: string): Promise<{ keyword_count: number; ai_credit_count: number; blog_diagnosis_count: number; post_diagnosis_count: number }> {
   const db = await getDb()
   const today = todayString()
-  const row = await db.get<{ keyword_count: number; ai_credit_count: number; blog_diagnosis_count: number }>(
-    'SELECT keyword_count, ai_credit_count, blog_diagnosis_count FROM usage_limits WHERE user_id = ? AND date = ?',
+  const row = await db.get<{ keyword_count: number; ai_credit_count: number; blog_diagnosis_count: number; post_diagnosis_count: number }>(
+    'SELECT keyword_count, ai_credit_count, blog_diagnosis_count, post_diagnosis_count FROM usage_limits WHERE user_id = ? AND date = ?',
     [userId, today]
   )
-  return row || { keyword_count: 0, ai_credit_count: 0, blog_diagnosis_count: 0 }
+  return row || { keyword_count: 0, ai_credit_count: 0, blog_diagnosis_count: 0, post_diagnosis_count: 0 }
 }
