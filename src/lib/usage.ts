@@ -2,7 +2,7 @@ import { getDb } from './db'
 import { getPlanLimit, type PlanType } from './plans'
 import { todayString } from './utils'
 
-type UsageType = 'keyword_count' | 'ai_credit_count' | 'blog_diagnosis_count'
+type UsageType = 'keyword_count' | 'ai_credit_count' | 'blog_diagnosis_count' | 'post_diagnosis_count'
 
 export async function checkUsageLimit(userId: string, type: UsageType, plan: PlanType): Promise<{ allowed: boolean; current: number; limit: number }> {
   const db = await getDb()
